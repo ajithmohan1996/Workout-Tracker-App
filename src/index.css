@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #543fb2;
+}
+
+.app {
+  background: #ffffffb6 ;
+  width: 90%;
+  margin: 40px auto;
+  border-radius: 12px;
+  padding: 30px 100px;
+}
+
+/* Nav section */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+   width: 100%;
+   max-width: 400px;
+}
+
+.nav-links {
+  display: flex;
+  font-weight: 600;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links li {
+  cursor: pointer;
+  color: #555;
+}
+
+.nav-links .active {
+  color: #1d1f4a;
+  font-weight: 800;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-actions input {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.menu-icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/*the main page section*/
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+.hero-left {
+  width: 30%;
+}
+.hero-left h1 {
+  font-size: 56px;
+  font-weight: 800;
+  color: #1d1f4a;
+}
+
+.hero-left h3 {
+  margin: 20px 0 10px;
+  color: #3b4fe4;
+}
+
+.hero-left p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.hero-left h4 {
+  margin-bottom: 10px;
+  color: #1d1f4a;
+}
+.form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+.form button {
+  width: 100%;
+  padding: 12px;
+  background: #3b4fe4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.hero-right {
+  width: 100%;
+  text-align: right;
+}
+.hero-right img {
+  width: 100%;
+  max-width: 1000px;
+  padding :0%;
+}
+.Exercise{
+   margin: 20px 0 10px;
+  color: #3b4fe4;
+  
+}
+.update{
+  width: 300%;
+  padding: 0px;
+  margin-bottom: 30px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1d1f4a;
+  
+}
+.update h2{
+
+  font-size: 60px;
+  font-weight: 100;
+  color: #df0b6e;
+
+}
+.update button {
+  margin-right: 12px;
+  margin-left: 12px;
+  margin-bottom: 12px;
+  width: 10%;
+  padding: 10px;
+  background: #3b4fe4;
+  color: white;
+  border: none;
+  border-radius: 23px;
+  font-weight: 600;
+}
+.logo {
+  height: 10em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+.change{
+margin-bottom: 12px;
+}
