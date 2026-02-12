@@ -3,16 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import heroImg from '../assets/1x/Mesa de trabajo 1.png'
 function Hero() {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
  const handleSubmit = (e) => {
   e.preventDefault();
   const isValidEmail = email.includes('@');
-  const isValidName = name.trim().length !== 0;
+  const isValidPassword = password.trim().length !== 0;
+  const eName = email;
+  const ePassword = password;
+  const userName = "ajithmohan.tkd@gmail.com";
+  const userPassword = "12345";
+
   
-  if (isValidEmail && isValidName) {
-    navigate('/exercise', { state: { email, name } });
+  if (isValidEmail && isValidPassword) {
+    if(eName == userName && ePassword == userPassword)
+    {
+      navigate('/exercise', { state: { email, password } });
+    }
+    else{
+      alert('You are not allowed to login');
+    }
+    
   }
   else {
     alert('Please enter valid details.');
@@ -42,10 +54,10 @@ function Hero() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit">Submit</button>
         </form>

@@ -6,9 +6,9 @@ function Navbar() {
     <nav className="navbar">
       <img className="logo" src={loImage} alt="lOGO" />
       <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
+        <li className="update"><Link to="/">Home</Link></li>
+        <li className="update"><Link to="/about">About</Link></li>
+        <li className="update"><Link to="/contact">Contact</Link></li>
       </ul>
     </nav>
   );

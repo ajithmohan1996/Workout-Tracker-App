@@ -57,6 +57,7 @@ function ExercisePage() {
           <h4><label>Exercise:</label></h4>
           <input
             type="text"
+            placeholder="Enter the name of the Exercise"
             value={exercise}
             onChange={(e) => setExercise(e.target.value)}
           />
@@ -65,6 +66,7 @@ function ExercisePage() {
           <h4><label>Repetitions:</label></h4>
           <input
             type="number"
+            placeholder="Enter the number of Repetitions"
             value={repetitions}
             onChange={(e) => setRepetitions(e.target.value)}
           />
@@ -73,6 +75,7 @@ function ExercisePage() {
           <h4><label>Sets:</label></h4>
           <input
             type="number"
+            placeholder="Enter the number of stes"
             value={sets}
             onChange={(e) => setSets(e.target.value)}
           />
@@ -88,7 +91,7 @@ function ExercisePage() {
             <li key={index}>
               <strong>Exercise:</strong> {entry.exercise}, <strong>Repetitions:</strong> {entry.repetitions}, <strong>Sets:</strong> {entry.sets}
               <button onClick={() => handleEdit(index)}>Edit</button>
-              <button  onClick={() => handleDelete(index)}>Delete</button>
+              <button onClick={() => handleDelete(index)}>Delete</button>
             </li>
           ))}
         </ul>
