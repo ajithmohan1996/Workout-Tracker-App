@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { getExercises, createExercise, updateExercise, deleteExercise }from "../services/exerciseService";
+
 
 function ExercisePage() {
   const [exercise, setExercise] = useState('');
@@ -8,53 +10,73 @@ function ExercisePage() {
   const [submitted,setSubmitted] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
-  useEffect(() => { const existingEntries = JSON.parse(localStorage.getItem('exerciseEntries')) || [];
-    setEntries(existingEntries);}, []);
+  useEffect(() => {
+  loadExercises();
+}, []);
 
-    const handleSubmit = (e) => {
-    e.preventDefault();
-    const newEntry = { exercise, repetitions, sets };
+const loadExercises = async () => {
+  try {
+    const response = await getExercises();
+    setEntries(response.data);
+  } catch (error) {
+    console.error("Error fetching exercises:", error);
+  }
+};
 
-    let updatedEntries = [...entries];
+    const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (editIndex !== null) 
-    {
-      updatedEntries[editIndex] = newEntry;
-      setEditIndex(null);
-    } 
-    else 
-    {
-      updatedEntries.push(newEntry);
-    }
+  const newEntry = {
+    exercise,
+    repetitions: Number(repetitions),
+    sets: Number(sets)
+  };
 
-    localStorage.setItem('exerciseEntries', JSON.stringify(updatedEntries));
-    setEntries(updatedEntries);
+  try {
+   if (editIndex !== null) {
+  await updateExercise(editIndex, newEntry);
+  setEditIndex(null);
+} else {
+  await createExercise(newEntry);
+}
+
+await loadExercises();
+
+
+
+    const response = await getExercises();
+    setEntries(response.data);
 
     setExercise('');
     setRepetitions('');
     setSets('');
-    setSubmitted(true);
-  };
+  } catch (error) {
+    console.error("Error saving exercise:", error);
+  }
+};
+const handleEdit = (entry) => {
+  setExercise(entry.exercise);
+  setRepetitions(entry.repetitions);
+  setSets(entry.sets);
+  setEditIndex(entry.id); // store ID instead of index
+};
+const handleDelete = async (id) => {
+  try {
+    await deleteExercise(id);
+    await loadExercises(); // wait properly
+  } catch (error) {
+    console.error("Error deleting exercise:", error);
+  }
+};
 
-  const handleEdit = (index) => {
-    const entry = entries[index];
-    setExercise(entry.exercise);
-    setRepetitions(entry.repetitions);
-    setSets(entry.sets);
-    setEditIndex(index);
-  };
-
-  const handleDelete = (index) => {
-    const updatedEntries = entries.filter((_, i) => i !== index);
-    localStorage.setItem('exerciseEntries', JSON.stringify(updatedEntries));
-    setEntries(updatedEntries);
-  };
-  const handleCancel = () => {
+const handleCancel = () => {
   setExercise('');
   setRepetitions('');
   setSets('');
   setEditIndex(null);
 };
+
+
 
 
   return (
@@ -94,15 +116,17 @@ function ExercisePage() {
 
       <div>
         <h2 className="update">All Submitted Entries:</h2>
-        <ul  className="update">
-          {entries.map((entry, index) => (
-            <li key={index}>
-              <strong>Exercise:</strong> {entry.exercise}, <strong>Repetitions:</strong> {entry.repetitions}, <strong>Sets:</strong> {entry.sets}
-              <button onClick={() => handleEdit(index)}>Edit</button>
-              <button onClick={() => handleDelete(index)}>Delete</button>
-            </li>
-          ))}
-        </ul>
+        <ul className="update">
+              {entries.map((entry) => (
+                <li key={entry.id}>
+                   <strong>Exercise:</strong> {entry.exercise},
+                   <strong> Repetitions:</strong> {entry.repetitions},
+                   <strong> Sets:</strong> {entry.sets}
+                   <button onClick={() => handleEdit(entry)}>Edit</button>
+                  <button onClick={() => handleDelete(entry.id)}>Delete</button>
+                </li>
+               ))}
+       </ul>
       </div>
     </section>
   );

@@ -8,28 +8,31 @@ function Hero() {
 
  const handleSubmit = (e) => {
   e.preventDefault();
-  const isValidEmail = email.includes('@');
-  const isValidPassword = password.trim().length !== 0;
-  const eName = email;
-  const ePassword = password;
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidEmail = emailRegex.test(email);
+  const isValidPassword = password.trim().length >= 5;
+
   const userName = "ajithmohan.tkd@gmail.com";
   const userPassword = "12345";
 
-  
-  if (isValidEmail && isValidPassword) {
-    if(eName == userName && ePassword == userPassword)
-    {
-      navigate('/exercise', { state: { email, password } });
-    }
-    else{
-      alert('You are not allowed to login');
-    }
-    
+  if (!isValidEmail) {
+    alert("Please enter a valid email address.");
+    return;
   }
-  else {
-    alert('Please enter valid details.');
+
+  if (!isValidPassword) {
+    alert("Password must be at least 5 characters.");
+    return;
+  }
+
+  if (email === userName && password === userPassword) {
+    navigate('/exercise', { state: { email } });
+  } else {
+    alert("You are not allowed to login.");
   }
 };
+
 
 
 
