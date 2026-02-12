@@ -5,6 +5,7 @@ function ExercisePage() {
   const [repetitions, setRepetitions] = useState('');
   const [sets, setSets] = useState('');
   const [entries, setEntries] = useState([]);
+  const [submitted,setSubmitted] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
   useEffect(() => { const existingEntries = JSON.parse(localStorage.getItem('exerciseEntries')) || [];
@@ -48,6 +49,13 @@ function ExercisePage() {
     localStorage.setItem('exerciseEntries', JSON.stringify(updatedEntries));
     setEntries(updatedEntries);
   };
+  const handleCancel = () => {
+  setExercise('');
+  setRepetitions('');
+  setSets('');
+  setEditIndex(null);
+};
+
 
   return (
     <section className="hero-left">
@@ -81,7 +89,7 @@ function ExercisePage() {
           />
         </div>
         <button className="change" type="submit">{editIndex !== null ? 'Update' : 'Submit'}</button>
-        {editIndex !== null && (<button className="change" type="button" onClick={() => setEditIndex(null)}>Cancel</button> )}
+        {editIndex !== null && (<button className="change" type="button" onClick={() => handleCancel()}>Cancel</button> )}
       </form>
 
       <div>
