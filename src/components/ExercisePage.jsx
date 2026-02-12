@@ -19,21 +19,16 @@ function ExercisePage() {
 
     if (editIndex !== null) 
     {
-      // Update the existing entry
       updatedEntries[editIndex] = newEntry;
       setEditIndex(null);
     } 
     else 
     {
-      // Add new entry
       updatedEntries.push(newEntry);
     }
-
-    // Save updated entries to local storage
     localStorage.setItem('exerciseEntries', JSON.stringify(updatedEntries));
     setEntries(updatedEntries);
-
-    // Clear form fields
+    
     setExercise('');
     setRepetitions('');
     setSets('');
