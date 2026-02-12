@@ -8,17 +8,13 @@ function Hero() {
 
  const handleSubmit = (e) => {
   e.preventDefault();
-  console.log('Form submitted with email:', email, 'and name:', name);
-
   const isValidEmail = email.includes('@');
   const isValidName = name.trim().length !== 0;
-
-  console.log('Email valid:', isValidEmail, 'Name valid:', isValidName);
-
+  
   if (isValidEmail && isValidName) {
-    console.log('Navigating to /exercise');
     navigate('/exercise', { state: { email, name } });
-  } else {
+  }
+  else {
     alert('Please enter valid details.');
   }
 };

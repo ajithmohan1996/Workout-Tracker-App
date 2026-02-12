@@ -4,7 +4,6 @@ function ExercisePage() {
   const [exercise, setExercise] = useState('');
   const [repetitions, setRepetitions] = useState('');
   const [sets, setSets] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [entries, setEntries] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
 
